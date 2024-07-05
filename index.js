@@ -1,29 +1,32 @@
 const express = require('express');
-const cors = require('cors');
-const bodyParser = require('body-parser');
 const app = express();
+const path = require('path');
+const fs = require('fs');
 
-app.use(cors());
-app.use(bodyParser.json()); 
-
-
-app.get('/tarefas', (req, res) => {
-    res.json([
-        { id: 1, tarefa: 'Estudar Node.js' },
-        { id: 2, tarefa: 'Fazer exercícios' }
-    ]);
+app.get('/', (req, res) => {
+  res.send('Olá, mundo!');
 });
 
+app.get('/sobre', (req, res) => {
+  res.send('Esta é a página sobre');
+});
 
-app.post('/novaTarefa', (req, res) => {
-    const novaTarefa = req.body;
-    console.log('Nova tarefa recebida:', novaTarefa);
-
-   
-    res.status(200).json({ message: 'Tarefa recebida com sucesso!', tarefa: novaTarefa });
+app.get('/tarefas', (req, res) => {
+  const tarefasPath = path.join(__dirname, 'public', 'tarefas.json');
+  
+  fs.readFile(tarefasPath, 'utf8', (err, data) => {
+    if (err) {
+      res.status(500).send('Erro ao ler o arquivo de tarefas.');
+      return;
+    }
+    res.setHeader('Content-Type', 'application/json');
+    res.send(data);
+  });
 });
 
 app.listen(3000, () => {
-    console.log('Servidor rodando na porta 3000');
+  console.log('Servidor rodando em http://localhost:3000');
 });
 
+
+  

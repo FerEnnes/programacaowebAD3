@@ -1,5 +1,22 @@
 {
+  "name": "projetoad3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FerEnnes/Programacaoweb.git"
+  },
+  "author": "Fernanda Ennes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FerEnnes/Programacaoweb/issues"
+  },
+  "homepage": "https://github.com/FerEnnes/Programacaoweb#readme",
   "dependencies": {
-    "cors": "^2.8.5"
+    "express": "^4.19.2"
   }
 }
